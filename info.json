@@ -1,0 +1,16 @@
+{
+    "name": "incident-report-form-elementor",
+    "slug": "incident-report-form-elementor",
+    "version": "1.0.0",
+    "author": "mkshishir",
+    "homepage": "https://mkshishir.pages.dev",
+    "requires": "5.0",
+    "tested": "6.4",
+    "requires_php": "7.0",
+    "download_url": "https://example.com/plugins/incident-report-form-elementor/plugin.zip",
+    "sections": {
+      "description": "A simple Elementor widget to report an incident.",
+      "changelog": "Initial release."
+    }
+  }
+  
