@@ -1,10 +1,8 @@
 <?php
-use Elementor\Widget_Base;
-
 /**
  * Class Incident_Report_Widget
  */
-class Incident_Report_Widget extends Widget_Base {
+class Incident_Report_Widget extends \Elementor\Widget_Base {
 
     /**
      * Get widget name.
@@ -47,12 +45,14 @@ class Incident_Report_Widget extends Widget_Base {
      */
     protected function _register_controls() {
         // Define widget controls here.
+        // You can add controls for form fields such as text fields, email fields, etc.
     }
 
     /**
      * Render widget output on the frontend.
      */
     protected function render() {
-        // Render widget output here.
+        // Render the incident report form shortcode
+        echo do_shortcode('[incident_report_form]');
     }
 }

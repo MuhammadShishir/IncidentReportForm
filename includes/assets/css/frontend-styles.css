@@ -1,0 +1,39 @@
+/* Styles for incident report form on the frontend */
+
+/* Example styles for form container */
+.incident-report-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Example styles for form inputs */
+.incident-report-form-input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Example styles for form button */
+.incident-report-form-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Example styles for form button on hover */
+.incident-report-form-button:hover {
+    background-color: #0056b3;
+}

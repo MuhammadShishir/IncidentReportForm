@@ -1,16 +1,17 @@
 {
-    "name": "incident-report-form-elementor",
-    "slug": "incident-report-form-elementor",
-    "version": "1.0.0",
-    "author": "mkshishir",
-    "homepage": "https://mkshishir.pages.dev",
-    "requires": "5.0",
-    "tested": "6.4",
-    "requires_php": "7.0",
-    "download_url": "https://example.com/plugins/incident-report-form-elementor/plugin.zip",
-    "sections": {
-      "description": "A simple Elementor widget to report an incident.",
-      "changelog": "Initial release."
-    }
+  "slug": "incident-report-form-elementor",
+  "name": "Incident Report Form Elementor",
+  "version": "1.0.0",
+  "author": "MKS Entertainment & Technologies",
+  "requires": "5.0",
+  "tested": "5.8",
+  "requires_php": "7.0",
+  "last_updated": "2022-10-01",
+  "homepage": "https://example.com/plugins/incident-report-form-elementor/",
+  "download_url": "https://example.com/plugins/incident-report-form-elementor/incident-report-form-elementor.zip",
+  "sections": {
+      "description": "This plugin provides an Elementor widget for creating customizable incident report forms with various functionalities.",
+      "installation": "Install the plugin through the WordPress dashboard or by uploading the plugin ZIP file.",
+      "changelog": "Version 1.0.0: Initial release"
   }
-  
+}

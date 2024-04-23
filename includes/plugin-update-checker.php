@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Include the PluginUpdateChecker class.
-require_once(plugin_dir_path(__FILE__) . 'plugin-update-checker/plugin-update-checker.php');
+require_once(plugin_dir_path(__FILE__) . 'includes/plugin-update-checker.php');
 
 // Check for updates.
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
