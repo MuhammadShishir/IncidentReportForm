@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "author": "MKS Entertainment & Technologies",
   "requires": "5.0",
-  "tested": "5.8",
+  "tested": "6.4",
   "requires_php": "7.0",
-  "last_updated": "2022-10-01",
+  "last_updated": "2024-04-27",
   "homepage": "https://example.com/plugins/incident-report-form-elementor/",
   "download_url": "https://example.com/plugins/incident-report-form-elementor/incident-report-form-elementor.zip",
   "sections": {

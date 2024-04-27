@@ -3,7 +3,6 @@ jQuery(document).ready(function($) {
     function validateForm() {
         var name = $('#name').val();
         var email = $('#email').val();
-        var phone = $('#phone').val();
         var message = $('#message').val();
         var location = $('#location').val();
         
@@ -45,5 +44,4 @@ jQuery(document).ready(function($) {
             }
         });
     });
-
 });
