@@ -30,6 +30,7 @@ add_action('plugins_loaded', 'incident_report_load_textdomain');
 // Include the main plugin class.
 require_once(plugin_dir_path(__FILE__) . 'incident-report-form-elementor.php');
 
+
 // Include the admin scripts and styles.
 function incident_report_enqueue_admin_scripts() {
     wp_enqueue_script('incident-report-admin-scripts', plugin_dir_url(__FILE__) . 'admin/js/admin-scripts.js', array('jquery'), null, true);
@@ -41,7 +42,6 @@ class Incident_Report_Form_Elementor {
     
     public function __construct() {
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
-        add_shortcode('incident_report_form', array($this, 'render_form_shortcode'));
         add_action('admin_post_submit_incident_report', array($this, 'submit_report'));
         add_action('admin_menu', array($this, 'add_admin_menu'));
     }
@@ -52,12 +52,6 @@ class Incident_Report_Form_Elementor {
         wp_localize_script('incident-report-frontend-scripts', 'incident_report_ajax_object', array('ajaxurl' => admin_url('admin-ajax.php')));
     }
     
-    public function render_form_shortcode($atts) {
-        ob_start();
-        include(plugin_dir_path(__FILE__) . '../templates/incident-report-form.php');
-        return ob_get_clean();
-    }
-
     public function submit_report() {
         global $wpdb;
         $table_name = $wpdb->prefix . 'incident_reports';

@@ -32,6 +32,7 @@
     <button type="submit"><?php _e('Submit', 'incident-report-form-elementor'); ?></button>
 </form>
 
+<!-- Thank You Message -->
 <div id="thank-you-message" style="display: none;">
     <?php _e('Thank you for your submission!', 'incident-report-form-elementor'); ?>
 </div>
@@ -40,9 +41,9 @@
 // Get user's location using Geolocation API
 function getUserLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else {
-        alert("<?php _e('Geolocation is not supported by this browser.', 'incident-report-form-elementor'); ?>");
+        document.getElementById("location").setAttribute("placeholder", "<?php _e('Geolocation not supported', 'incident-report-form-elementor'); ?>");
     }
 }
 
@@ -57,5 +58,23 @@ function showPosition(position) {
 
     // Show the "Thank You" message
     document.getElementById("thank-you-message").style.display = "block";
+}
+
+// Error handling for Geolocation API
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            console.error("User denied the request for Geolocation.");
+            break;
+        case error.POSITION_UNAVAILABLE:
+            console.error("Location information is unavailable.");
+            break;
+        case error.TIMEOUT:
+            console.error("The request to get user location timed out.");
+            break;
+        case error.UNKNOWN_ERROR:
+            console.error("An unknown error occurred.");
+            break;
+    }
 }
 </script>
