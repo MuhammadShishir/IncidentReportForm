@@ -1,9 +1,3 @@
 /* Styles for the admin panel */
 
 /* Add your custom CSS styles here */
-.wrap .wp-list-table{
-    border: 1px solid #ff0000;
-    padding: 5px;
-    color:#ff0000 !important;
-    background-color: green !important;SS
-}

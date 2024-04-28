@@ -180,7 +180,7 @@ function incident_report_form_elementor_init() {
             echo '</style>'; '<div class="wrap">';
             
             echo '<table class="wp-list-table widefat fixed striped">';
-            echo '<thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Message</th><th>Location</th><th>Latitude</th><th>Longitude</th><th>Submitted At</th><th>IP Address</th></tr></thead>';
+            echo '<thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Message</th><th>Location</th><th>Latitude</th><th>Longitude</th><th>Image URL</th><th>Submitted At</th><th>IP Address</th></tr></thead>';
             echo '<tbody>';
             foreach ($incident_reports as $incident_report) {
                 echo '<tr>';
@@ -207,5 +207,7 @@ function incident_report_form_elementor_init() {
 }
 
 add_action('plugins_loaded', 'incident_report_form_elementor_init');
+
+
 
 ?>
