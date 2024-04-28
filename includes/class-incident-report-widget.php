@@ -5,28 +5,15 @@ use Elementor\Controls_Manager;
  * Class Incident_Report_Widget
  */
 class Incident_Report_Widget extends \Elementor\Widget_Base {
-    // Widget constructor
-    public function __construct($data = [], $args = null) {
-        parent::__construct($data, $args);
-
-        // Enqueue scripts and styles
-        add_action('elementor/frontend/after_register_scripts', [$this, 'enqueue_incident_report_form_elementor_assets']);
-    }
-
-    // Enqueue scripts and styles
-    public function enqueue_incident_report_form_elementor_assets() {
-        // Enqueue your CSS and JS files here
-        wp_enqueue_style('frontend-styles', plugin_dir_url(__FILE__) . 'includes/assets/css/style.css');
-        wp_enqueue_script('frontend-script', plugin_dir_url(__FILE__) . 'includes/assets/js/script.js', ['jquery'], null, true);
-    } 
-
-   
+    
     public function get_name() {
         return 'incident-report-widget';
     }
+    
     public function get_title() {
         return __('Incident Report Form', 'incident-report-form-elementor');
     }
+    
     public function get_icon() {
         return 'eicon-form-horizontal';
     }
@@ -159,7 +146,7 @@ class Incident_Report_Widget extends \Elementor\Widget_Base {
                 'label' => __('Background Overlay Color', 'incident-report-form-elementor'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .zakat-overlay' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .incident-report-form-elementor-overlay' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -171,7 +158,7 @@ class Incident_Report_Widget extends \Elementor\Widget_Base {
                 'label' => __('Background Image', 'incident-report-form-elementor'),
                 'type' => Controls_Manager::MEDIA,
                 'selectors' => [
-                    '{{WRAPPER}} .zakat-overlay' => 'background-image: url({{URL}});',
+                    '{{WRAPPER}} .incident-report-form-elementor-overlay' => 'background-image: url({{URL}});',
                 ],
             ]
         );
@@ -193,7 +180,7 @@ class Incident_Report_Widget extends \Elementor\Widget_Base {
                     'bottom right' => __('Bottom Right', 'incident-report-form-elementor'),
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .zakat-overlay' => 'background-position: {{VALUE}};',
+                    '{{WRAPPER}} .incident-report-form-elementor-overlay' => 'background-position: {{VALUE}};',
                 ],
             ]
         );
@@ -210,7 +197,7 @@ class Incident_Report_Widget extends \Elementor\Widget_Base {
                     'contain' => __('Contain', 'incident-report-form-elementor'),
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .zakat-overlay' => 'background-size: {{VALUE}};',
+                    '{{WRAPPER}} .incident-report-form-elementor-overlay' => 'background-size: {{VALUE}};',
                 ],
             ]
         );
@@ -228,160 +215,55 @@ class Incident_Report_Widget extends \Elementor\Widget_Base {
                     'repeat-y' => __('Repeat Vertically', 'incident-report-form-elementor'),
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .zakat-overlay' => 'background-repeat: {{VALUE}};',
+                    '{{WRAPPER}} .incident-report-form-elementor-overlay' => 'background-repeat: {{VALUE}};',
                 ],
             ]
         );
 
-        // Background Attachment control
-        $this->add_control(
-            'background_attachment',
-            [
-                'label' => __('Background Attachment', 'incident-report-form-elementor'),
-                'type' => Controls_Manager::SELECT,
-                'options' => [
-                    'scroll' => __('Scroll', 'incident-report-form-elementor'),
-                    'fixed' => __('Fixed', 'incident-report-form-elementor'),
-                    'local' => __('Local', 'incident-report-form-elementor'),
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .zakat-overlay' => 'background-attachment: {{VALUE}};',
-                ],
-            ]
-        );
-        
         $this->end_controls_section();
     }
 
-/**
-     * Render widget output on the frontend.
+    /**
+     * Render widget output on frontend.
      */
     protected function render() {
         $settings = $this->get_settings_for_display();
+
         ?>
-        <!-- Incident Report Form -->
-        <form id="incident-report-form" class="incident-report-form" method="post" enctype="multipart/form-data">
-            <!-- Name -->
-            <label for="name"><?php _e('Name:', 'incident-report-form-elementor'); ?></label>
-            <input type="text" id="name" name="name" required>
-            
-            <!-- Email -->
-            <label for="email"><?php _e('Email:', 'incident-report-form-elementor'); ?></label>
-            <input type="email" id="email" name="email">
-            
-            <!-- Phone -->
-            <label for="phone"><?php _e('Phone:', 'incident-report-form-elementor'); ?></label>
-            <input type="tel" id="phone" name="phone">
-            
-            <!-- Message -->
-            <label for="message"><?php _e('Message:', 'incident-report-form-elementor'); ?></label>
-            <textarea id="message" name="message" required></textarea>
-            
-            <!-- Location -->
-            <label for="location"><?php _e('Location:', 'incident-report-form-elementor'); ?></label>
-            <input type="text" id="location" name="location" required>
-            
-            <!-- Photo -->
-            <label for="photo"><?php _e('Photo:', 'incident-report-form-elementor'); ?></label>
-            <input type="file" id="photo" name="photo">
+        <div class="incident-report-form-elementor">
+            <div class="incident-report-form-elementor-overlay"></div>
+            <form id="incident-report-form" action="#" method="post" enctype="multipart/form-data">
 
-            <!-- Other form fields -->
-            <input type="hidden" id="latitude" name="latitude">
-            <input type="hidden" id="longitude" name="longitude">
+                <div class="incident-report-form-elementor-field">
+                    <label class="incident-report-form-elementor-label"><?php echo esc_html($settings['label']); ?></label>
+                    <input type="text" name="name" class="incident-report-form-elementor-input" placeholder="<?php esc_attr_e('Your name', 'incident-report-form-elementor'); ?>" required>
+                </div>
+                <div class="incident-report-form-elementor-field">
+                    <input type="email" name="email" class="incident-report-form-elementor-input" placeholder="<?php esc_attr_e('Your email', 'incident-report-form-elementor'); ?>" >
+                </div>
+                <div class="incident-report-form-elementor-field">
+                    <input type="tel" name="phone" class="incident-report-form-elementor-input" placeholder="<?php esc_attr_e('Your phone number', 'incident-report-form-elementor'); ?>">
+                </div>
+                <div class="incident-report-form-elementor-field">
+                    <textarea name="message" class="incident-report-form-elementor-input" placeholder="<?php esc_attr_e('Incident description', 'incident-report-form-elementor'); ?>" ></textarea>
+                </div>
+                <div class="incident-report-form-elementor-field">
+                    <input type="text" name="location" class="incident-report-form-elementor-input" placeholder="<?php esc_attr_e('Incident location', 'incident-report-form-elementor'); ?>">
+                </div>
+                <div class="incident-report-form-elementor-field">
+                <label for="incident-image"><?php esc_html_e('Upload Image', 'incident-report-form-elementor'); ?></label>
+                <input type="file" id="incident-image" name="incident_image" accept="image/*">
+                
+                </div>
+                <input type="hidden" name="latitude" class="incident-report-form-elementor-latitude">
+                <input type="hidden" name="longitude" class="incident-report-form-elementor-longitude">
+                <input type="hidden" name="nonce" class="incident-report-form-elementor-nonce" value="<?php echo esc_attr(wp_create_nonce('submit_incident_report_nonce')); ?>">
 
-            <!-- Submit Button -->
-            <button type="submit"><?php _e('Submit', 'incident-report-form-elementor'); ?></button>
-        </form>
-
-        <!-- Thank You Message -->
-        <div id="thank-you-message" style="display: none;">
-            <?php _e('Thank you for your submission!', 'incident-report-form-elementor'); ?>
+                <div class="incident-report-form-elementor-field">
+                <button type="submit"><?php esc_html_e('Submit', 'incident-report-form-elementor'); ?></button>
+                </div>
+            </form>
         </div>
-
-        <script>
-            jQuery(document).ready(function($) {
-            // AJAX request to handle form submission
-            $('#incident-report-form').on('submit', function(event) {
-                event.preventDefault(); // Prevent default form submission
-
-                // Get user's location using Geolocation API
-                getUserLocation();
-            });
-
-            // Get user's location using Geolocation API
-            function getUserLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function(position) {
-                        // Callback function to handle the user's location
-                        showPosition(position);
-                        // Submit the form after getting the user's location
-                        submitForm();
-                    }, showError);
-                } else {
-                    // If geolocation is not supported, proceed with form submission without location
-                    submitForm();
-                }
-            }
-
-            // Callback function to handle the user's location
-            function showPosition(position) {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
-
-                // Set latitude and longitude values in hidden fields
-                document.getElementById("latitude").value = latitude;
-                document.getElementById("longitude").value = longitude;
-
-                // Show the "Thank You" message
-                document.getElementById("thank-you-message").style.display = "block";
-            }
-
-            // Error handling for Geolocation API
-            function showError(error) {
-                switch(error.code) {
-                    case error.PERMISSION_DENIED:
-                        console.error("User denied the request for Geolocation.");
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        console.error("Location information is unavailable.");
-                        break;
-                    case error.TIMEOUT:
-                        console.error("The request to get user location timed out.");
-                        break;
-                    case error.UNKNOWN_ERROR:
-                        console.error("An unknown error occurred.");
-                        break;
-                }
-                // If there's an error with geolocation, proceed with form submission without location
-                submitForm();
-            }
-
-            // Function to submit the form
-            function submitForm() {
-                var formData = new FormData($('#incident-report-form')[0]);
-                $.ajax({
-                    type: 'POST',
-                    url: incident_report_ajax_object.ajaxurl,
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        // Display success message
-                        $('#thank-you-message').show();
-                        // Optionally, reset the form after successful submission
-                        $('#incident-report-form')[0].reset();
-                    },
-                    error: function(xhr, status, error) {
-                        // Display error message
-                        console.error('AJAX Error:', xhr.responseText); // Log error response
-                        alert('An error occurred while submitting the form. Please try again.');
-                    }
-                });
-            }
-        });
-
-        </script>
         <?php
     }
-
 }
